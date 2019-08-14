@@ -1,6 +1,8 @@
 #!python
+# Takes input from a text file, displays a count of words from the file in descending order
 import re
 import collections
+import operator
 
 while True:
     try:
@@ -22,6 +24,7 @@ while True:
         
 wordList = []
 wordListTotal = []
+wordDictionary = {}
 
 for line in file:
     words = line.split()
@@ -34,7 +37,13 @@ for line in file:
 
 for word in wordListTotal:
     if wordList.count(word) > wordMinimum:
-        print(word + ": " + str(wordList.count(word)))
+        wordDictionary[word] = wordList.count(word)
     else: continue
+
+sortedDict = sorted(wordDictionary.items(), key = operator.itemgetter(1), reverse= True)
+
+for pair in sortedDict:
+    print(pair[0] + ": " + str(pair[1]))
+
 
 input('PRESS ENTER TO EXIT')
