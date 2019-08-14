@@ -1,5 +1,6 @@
 #!python
 import re
+import collections
 
 while True:
     try:
