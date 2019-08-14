@@ -1,10 +1,24 @@
 #!python
 import re
 
-textFile = raw_input('Enter name of txt file: ')
-textFile = textFile + '.txt'
-file = open(textFile, 'r')
-
+while True:
+    try:
+        textFile = raw_input('Enter name of txt file: ')
+        textFile = textFile + '.txt'
+        file = open(textFile, 'r')
+        break
+    except:
+        print('File not found!')
+        continue
+        
+while True:
+    try:
+        wordMinimum = int(raw_input('Show me words that occur more than ___ times: '))
+        break
+    except:
+        print('Please enter a number.')
+        continue
+        
 wordList = []
 wordListTotal = []
 
@@ -18,7 +32,7 @@ for line in file:
             wordListTotal.append(word)
 
 for word in wordListTotal:
-    if wordList.count(word) > 50:
+    if wordList.count(word) > wordMinimum:
         print(word + ": " + str(wordList.count(word)))
     else: continue
 
